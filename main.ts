@@ -4,5 +4,4 @@ import { loadUsers } from "./users.js";
 
 const users = await loadUsers(100);
 const html = render(users);
-await writeFile('users.html', html);
-
+await writeFile("users.html", html);

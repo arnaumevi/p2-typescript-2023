@@ -1,4 +1,5 @@
 import { User } from "./users.js";
+import fs from "fs";
 
 const head = (title: string) => `
 <head>
@@ -35,18 +36,37 @@ const head = (title: string) => `
 </head>`;
 
 const renderUsers = (users: Array<User>) => {
+  var i = 0;
+  var htmlContent = "<html>Whatever</html>";
+
   let html = "";
   for (const user of users) {
-    html += `<div class="user">
+    htmlContent = `<div class="user">
+    
       <img src="${user.picture.medium}" />
       <div class="data">
         <div class="name">${user.fullName}</div>
         <div class="email">${user.email}</div>
       </div>
+    
     </div>`;
+    fs.writeFile("persona" + i + ".html", htmlContent, () => {
+      /* handle error */
+    });
+    var redirection = "persona" + i + ".html";
+    html += `<div class="user">
+    <a href=${redirection}>
+      <img src="${user.picture.medium}" />
+      <div class="data">
+        <div class="name">${user.fullName}</div>
+        <div class="email">${user.email}</div>
+      </div>
+    </a>
+    </div>`;
+    i++;
   }
   return html;
-}
+};
 
 export const render = (users: Array<User>) => {
   return `
