@@ -50,10 +50,10 @@ const renderUsers = (users: Array<User>) => {
       </div>
     
     </div>`;
-    fs.writeFile("persona" + i + ".html", htmlContent, () => {
+    fs.writeFile("./users_html/persona" + i + ".html", htmlContent, () => {
       /* handle error */
     });
-    var redirection = "persona" + i + ".html";
+    var redirection = "./users_html/persona" + i + ".html";
     html += `<div class="user">
     <a href=${redirection}>
       <img src="${user.picture.medium}" />
