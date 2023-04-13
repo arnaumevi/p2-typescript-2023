@@ -1,4 +1,3 @@
-import fs from "fs";
-import { generateHTMLFile } from "./DigimonAPI";
+import { generateHTMLFile } from "./initialpage";
 
 generateHTMLFile();

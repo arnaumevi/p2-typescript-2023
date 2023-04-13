@@ -1,15 +1,16 @@
-import fs from "fs";
+import * as fs from "fs";
 
-export async function getDigimonList(): Promise<Digimon[]> {
-  const response = await fetch("http://digi-api.com/api/v1/digimon");
+export async function getCharacterList(): Promise<Rickandmortyapi[]> {
+  const response = await fetch("https://rickandmortyapi.com/api/character");
   const data = await response.json();
-  const digimonList = data.content as Digimon[];
-  return digimonList;
+  const characterList = data.results as Rickandmortyapi[];
+  return characterList;
 }
+
 export async function createHeader(): Promise<string> {
   const header = `
     <head>
-      <title>Digimon Cards</title>
+      <title>Rick and Morty Cards</title>
       <style>
         body {
           display: flex;
@@ -59,16 +60,31 @@ export async function createHeader(): Promise<string> {
   `;
   return header;
 }
-export async function getDigimonCardsHTML(): Promise<string> {
+
+export async function getCharacterCardsHTML(): Promise<string> {
   let html = "";
-  const digimonList = await getDigimonList();
-  for (const digimon of digimonList) {
-    html += `
+  const characterList = await getCharacterList();
+  for (const character of characterList) {
+    let htmlContent = `
         <div class="card">
-          <img src="${digimon.image}" alt="${digimon.name}" />
-          <h2>${digimon.name}</h2>
-          <p>ID: ${digimon.id}</p>
-          <a href="${digimon.href}">Learn more</a>
+          <img src="${character.image}" alt="${character.name}" />
+          <h2>${character.name}</h2>
+          <p>ID: ${character.id}</p>
+        </div>
+      `;
+    fs.writeFile(
+      "./characters/" + character.name + ".html",
+      htmlContent,
+      () => {
+        /* handle error */
+      }
+    );
+
+    html += `
+        <div class="card" onclick="window.location.href='./characters/+ ${character.name}.html';">
+          <img src="${character.image}" alt="${character.name}" />
+          <h2>${character.name}</h2>
+          <p>ID: ${character.id}</p>
         </div>
       `;
   }
@@ -77,7 +93,7 @@ export async function getDigimonCardsHTML(): Promise<string> {
 
 export async function generateHTMLFile(): Promise<void> {
   const header = await createHeader();
-  const cardsHTML = await getDigimonCardsHTML();
+  const cardsHTML = await getCharacterCardsHTML();
   const html = `
       <!DOCTYPE html>
       <html>
@@ -85,14 +101,32 @@ export async function generateHTMLFile(): Promise<void> {
         <body>
           ${cardsHTML}
         </body>
+        <script>
+          function showDetails(id) {
+            window.location.href = 'details.html?id=' + id;
+          }
+        </script>
       </html>
     `;
   fs.writeFileSync("index.html", html);
 }
-
-export interface Digimon {
+export interface Rickandmortyapi {
   id: number;
   name: string;
-  href: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
   image: string;
+  episode: string[];
+  url: string;
+  created: string;
 }
