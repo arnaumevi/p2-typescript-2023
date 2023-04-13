@@ -72,16 +72,12 @@ export async function getCharacterCardsHTML(): Promise<string> {
           <p>ID: ${character.id}</p>
         </div>
       `;
-    fs.writeFile(
-      "./characters/" + character.name + ".html",
-      htmlContent,
-      () => {
-        /* handle error */
-      }
-    );
+    fs.writeFile("./characters/" + character.id + ".html", htmlContent, () => {
+      /* handle error */
+    });
 
     html += `
-        <div class="card" onclick="window.location.href='./characters/+ ${character.name}.html';">
+        <div class="card" onclick="window.location.href='./characters/${character.id}.html';">
           <img src="${character.image}" alt="${character.name}" />
           <h2>${character.name}</h2>
           <p>ID: ${character.id}</p>
