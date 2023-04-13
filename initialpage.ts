@@ -97,11 +97,6 @@ export async function generateHTMLFile(): Promise<void> {
         <body>
           ${cardsHTML}
         </body>
-        <script>
-          function showDetails(id) {
-            window.location.href = 'details.html?id=' + id;
-          }
-        </script>
       </html>
     `;
   fs.writeFileSync("index.html", html);
