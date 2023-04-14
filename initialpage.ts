@@ -11,18 +11,21 @@ export async function createHeader(): Promise<string> {
   const header = `
     <head>
       <title>Rick and Morty Cards</title>
+      <header>
+      <img src="rickandmortybanner.png" alt="" />
+    </header>
       <style>
         body {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
-          background-color: #bcf8ff;
+          background-image: url("582812-rick-and-morty.jpg");
         }
         .card {
           width: 250px;
           margin: 1rem;
-          background-color: rgb(43, 250, 24);
+          background-color: rgb(0, 0, 0);
           border: 10px solid #000000;
           border-radius: 15px;
           box-shadow: 0 0 5px #0e8526;
@@ -39,9 +42,11 @@ export async function createHeader(): Promise<string> {
         }
         .card h2 {
           margin-top: 0.5rem;
+          color: rgb(255, 255, 255);
         }
         .card p {
           margin: 0.5rem 0;
+          color: rgb(255, 255, 255);
         }
         .card a {
           display: inline-block;
@@ -71,10 +76,10 @@ export async function getCharacterCardsHTML(): Promise<string> {
           <h2>${character.name}</h2>
             <p>ID: ${character.id}</p>
             <p>GENDER: ${character.gender}</p>
-            <p>ORIGIN: ${character.origin}</p>
+            <p>ORIGIN: ${character.origin.name}</p>
             <p>STATUS: ${character.status}</p>
             <p>SPECIE: ${character.species}</p>
-            <p>TYPE: ${character.type}</p>
+            <p>TYPE: ${character.location.name}</p>
 
         </div>
         <style>
@@ -83,21 +88,21 @@ export async function getCharacterCardsHTML(): Promise<string> {
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
-          background-color: #f7f7f7;
+          background-image: url("../wallpaper\ rick.png");
         }
         .card {
-          width: 550px;
+          width: 450px;
           margin: 1rem;
-          background-color: rgb(43, 250, 24);
+          background-color: rgb(0, 0, 0);
           border: 10px solid #000000;
-          border-radius: 5px;
-          box-shadow: 0 0 15px #0e8526;
+          border-radius: 15px;
+          box-shadow: 0 0 5px #0e8526;
           text-align: center;
           padding: 1rem;
         }
         .card img {
-          width: 450px;
-          height: 450px;
+          width: 350px;
+          height: 350px;
           object-fit: cover;
           border-radius: 50%;
           margin: 0 auto;
@@ -105,9 +110,11 @@ export async function getCharacterCardsHTML(): Promise<string> {
         }
         .card h2 {
           margin-top: 0.5rem;
+          color: rgb(255, 255, 255);
         }
         .card p {
           margin: 0.5rem 0;
+          color: rgb(255, 255, 255);
         }
         .card a {
           display: inline-block;
