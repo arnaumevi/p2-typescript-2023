@@ -53,6 +53,8 @@ export async function createHeader(): Promise<string> {
         .card p {
           margin: 0.5rem 0;
           color: rgb(255, 255, 255);
+          font-size: 30px;
+          font-style: bold;
         }
         .card a {
           display: inline-block;
@@ -81,7 +83,6 @@ export async function getCharacterCardsHTML(): Promise<string> {
         <div class="card">
           <img src="${character.image}" alt="${character.name}" />
           <h2>${character.name}</h2>
-            <p>ID: ${character.id}</p>
             <p>GENDER: ${character.gender}</p>
             <p>ORIGIN: ${character.origin.name}</p>
             <p>STATUS: ${character.status}</p>
@@ -122,6 +123,8 @@ export async function getCharacterCardsHTML(): Promise<string> {
         .card p {
           margin: 0.5rem 0;
           color: rgb(255, 255, 255);
+          font-size: 20px;
+          font-style: bold;
         }
         .card a {
           display: inline-block;
