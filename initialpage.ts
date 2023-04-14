@@ -18,6 +18,8 @@ export async function createHeader(): Promise<string> {
       header {
         width: 100%;
         align-items: center;
+        display: flex;
+        justify-content: center;
       }
         body {
           display: flex;
