@@ -12,15 +12,19 @@ export async function createHeader(): Promise<string> {
     <head>
       <title>Rick and Morty Cards</title>
       <header>
-      <img src="rickandmortybanner.png" alt="" />
+      <img src="/media/rickandmortybanner.png" alt="" />
     </header>
       <style>
+      header {
+        width: 100%;
+        align-items: center;
+      }
         body {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
-          background-image: url("582812-rick-and-morty.jpg");
+          background-image: url("/media/startsbackground.jpg");
         }
         .card {
           width: 250px;
@@ -71,6 +75,7 @@ export async function getCharacterCardsHTML(): Promise<string> {
   const characterList = await getCharacterList();
   for (const character of characterList) {
     let htmlContent = `
+    <head>
         <div class="card">
           <img src="${character.image}" alt="${character.name}" />
           <h2>${character.name}</h2>
@@ -88,7 +93,7 @@ export async function getCharacterCardsHTML(): Promise<string> {
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
-          background-image: url("../wallpaper\ rick.png");
+          background-image: url("../media/wallpaper\ rick.png");
         }
         .card {
           width: 450px;
@@ -129,6 +134,7 @@ export async function getCharacterCardsHTML(): Promise<string> {
           background-color: #0055a5;
         }
       </style>
+    </head>
       `;
     fs.writeFile("./characters/" + character.id + ".html", htmlContent, () => {
       /* handle error */
